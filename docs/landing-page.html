@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style type="text/css">
+      #content {
+        margin: auto;
+        width: 90%;
+      }
+      div.gallery {
+        margin: 5px;
+        border: 1px solid #ccc;
+        float: left;
+        width: 180px;
+      }
+      div.gallery:focus-within {
+        background-color: yellow;
+      }
+      div.gallery img {
+        width: 100%;
+        height: auto;
+      }
+      div.desc {
+        padding: 15px;
+        text-align: center;
+      }
+    </style>
+    <script type="text/javascript">
+      var streamingURLS = {
+        "H9mXFeGsGEE" : {
+          "name" : "Asianet News",
+          "vid" : "H9mXFeGsGEE"
+        },
+        "CtQYF3wlgL8" : {
+          "name" : "Manorama News",
+          "vid" : "CtQYF3wlgL8"
+        },
+        "Mua9cZiohsQ" : {
+          "name" : "24 News",
+          "vid" : "Mua9cZiohsQ"
+        },
+        "V5138FvzefA" : {
+          "name" : "Mathrubhoomi News",
+          "vid" : "V5138FvzefA"
+        },
+        "5zVVqb9jN-E" : {
+          "name" : "Shalom TV",
+          "vid" : "5zVVqb9jN-E"
+        }
+      };
+      $(document).ready(function(){
+        $.each(streamingURLS, function (vId, data) {
+          var name = data['name'];
+          var html = '<div class="gallery" tabIndex="-1" title="https://www.youtube.com/watch?v=' + vId + '">';
+          html += '<a href="#">';
+          html += '<img src="https://img.youtube.com/vi/' + vId + '/default.jpg" alt="' + name + '" width="600" height="400">'
+          html += '</a>';
+          html += '<div class="desc">' + name + '</div>';
+          html += '</div>';
+          $("#content").append(html);
+        });
+        $(".gallery").click(function(){
+          var streamignURL = $(this).attr('title');
+          YT.startStreaming(streamignURL);
+        });
+      });
+    </script>
+</head>
+<body>
+<div id="content">
+
+</div>
+</body>
+</html>
