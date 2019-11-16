@@ -1,6 +1,7 @@
 package com.eazy7x.android.streaming;
 
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -96,8 +97,13 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         });
         mContentView.addJavascriptInterface(new StreamingRequestJsHandler(this), "YT");
-        mContentView.loadUrl("https://princekf.github.io/youtube-streaming-vlc/landing-page.html");
-
+        PackageManager pm = getPackageManager();
+        try {
+            pm.getPackageInfo("org.videolan.vlc", 0);
+            mContentView.loadUrl("https://princekf.github.io/youtube-streaming-vlc/landing-page.html");
+        } catch (PackageManager.NameNotFoundException e) {
+            mContentView.loadUrl("file:///android_asset/no_vlc.html");
+        }
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
