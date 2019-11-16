@@ -96,7 +96,7 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         });
         mContentView.addJavascriptInterface(new StreamingRequestJsHandler(this), "YT");
-        mContentView.loadUrl("https://princekf.github.io/android-youtube-player-using-vlc-server/index.html");
+        mContentView.loadUrl("https://princekf.github.io/youtube-streaming-vlc/landing-page.html");
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
